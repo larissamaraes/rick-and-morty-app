@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.rickandmortyapp.R
+import com.example.rickandmortyapp.databinding.FragmentMainBinding
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class PlaceholderFragment : Fragment() {
 
+    private lateinit var binding: FragmentMainBinding
     private lateinit var pageViewModel: PageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,12 +30,11 @@ class PlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_main, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
+        binding = FragmentMainBinding.inflate(layoutInflater)
         pageViewModel.text.observe(this, Observer<String> {
-            textView.text = it
+            binding.sectionLabel.text = it
         })
-        return root
+        return binding.root
     }
 
     companion object {
