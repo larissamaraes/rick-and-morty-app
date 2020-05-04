@@ -15,4 +15,8 @@ class EpisodesFragment : Fragment() {
         binding = FragmentEpisodesBinding.inflate(layoutInflater)
         return binding.root
     }
+
+    companion object {
+        fun newInstance(): EpisodesFragment = EpisodesFragment()
+    }
 }

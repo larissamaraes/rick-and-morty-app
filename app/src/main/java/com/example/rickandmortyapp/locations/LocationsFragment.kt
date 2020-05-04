@@ -15,4 +15,8 @@ class LocationsFragment : Fragment() {
         binding = FragmentLocationsBinding.inflate(layoutInflater)
         return binding.root
     }
+
+    companion object {
+        fun newInstance(): LocationsFragment = LocationsFragment()
+    }
 }
