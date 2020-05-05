@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.rickandmortyapp.R
-import com.example.rickandmortyapp.characters.CharactersFragment
-import com.example.rickandmortyapp.episodes.EpisodesFragment
-import com.example.rickandmortyapp.locations.LocationsFragment
+import com.example.rickandmortyapp.ui.characters.CharactersFragment
+import com.example.rickandmortyapp.ui.episodes.EpisodesFragment
+import com.example.rickandmortyapp.ui.locations.LocationsFragment
 import java.lang.RuntimeException
 
 private val TAB_TITLES = arrayOf(
