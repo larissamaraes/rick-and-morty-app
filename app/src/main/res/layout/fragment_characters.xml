@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/characters_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_list_character"/>
+        tools:listitem="@layout/item_list_character" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

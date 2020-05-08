@@ -6,7 +6,7 @@ import com.example.rickandmortyapp.model.Character
 
 class CharactersAdapter : RecyclerView.Adapter<CharactersViewHolder>() {
 
-    private val characters: List<Character> = listOf()
+    private var characters: List<Character> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
         return CharactersViewHolder.inflate(parent)
@@ -16,5 +16,10 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersViewHolder>() {
 
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
         holder.bindCharacter(characters[position])
+    }
+
+    fun setCharacters(characters: List<Character>) {
+        this.characters = characters
+        notifyDataSetChanged()
     }
 }
