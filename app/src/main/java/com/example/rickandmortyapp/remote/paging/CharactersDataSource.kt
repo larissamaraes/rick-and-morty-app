@@ -35,9 +35,13 @@ class CharactersDataSource(
         callback: LoadCallback<Int, Character>?
     ) {
         coroutineScope.launch {
-            val result = apiService.getCharacters(requestedPage)
-            initialCallback?.onResult(result.characters, null, adjacentPage)
-            callback?.onResult(result.characters, adjacentPage)
+            try {
+                val result = apiService.getCharacters(requestedPage)
+                initialCallback?.onResult(result.characters, null, adjacentPage)
+                callback?.onResult(result.characters, adjacentPage)
+            } catch (e: Exception) {
+                // nothing to do here
+            }
         }
     }
 }
