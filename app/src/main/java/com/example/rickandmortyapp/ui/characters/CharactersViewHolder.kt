@@ -13,17 +13,19 @@ class CharactersViewHolder(
     private val binding: ItemListCharacterBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bindCharacter(character: Character) {
-        with(binding) {
-            characterName.text = character.name
-            characterStatus.text = root.context.getString(
-                R.string.character_status,
-                character.status.capitalize()
-            )
-            Glide.with(this.root)
-                .load(character.image)
-                .transform(RoundedCorners(8))
-                .into(characterAvatar)
+    fun bindCharacter(character: Character?) {
+        character?.let {
+            with(binding) {
+                characterName.text = it.name
+                characterStatus.text = root.context.getString(
+                    R.string.character_status,
+                    it.status.capitalize()
+                )
+                Glide.with(this.root)
+                    .load(it.image)
+                    .transform(RoundedCorners(8))
+                    .into(characterAvatar)
+            }
         }
     }
 

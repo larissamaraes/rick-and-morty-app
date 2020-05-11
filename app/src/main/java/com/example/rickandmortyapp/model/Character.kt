@@ -2,7 +2,7 @@ package com.example.rickandmortyapp.model
 
 import java.util.*
 
-class Character (
+data class Character (
     val id: Long,
     val name: String,
     val status: String,
