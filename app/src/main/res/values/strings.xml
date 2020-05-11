@@ -4,4 +4,6 @@
     <string name="tab_text_characters">Characters</string>
     <string name="tab_text_locations">Locations</string>
     <string name="tab_text_episodes">Episodes</string>
+
+    <string name="character_status">Status: %s</string>
 </resources>

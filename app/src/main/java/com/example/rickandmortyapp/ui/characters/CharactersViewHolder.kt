@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.example.rickandmortyapp.R
 import com.example.rickandmortyapp.databinding.ItemListCharacterBinding
 import com.example.rickandmortyapp.model.Character
 
@@ -14,8 +16,14 @@ class CharactersViewHolder(
     fun bindCharacter(character: Character) {
         with(binding) {
             characterName.text = character.name
-            characterStatus.text = character.status
-            Glide.with(this.root).load(character.image).into(characterAvatar)
+            characterStatus.text = root.context.getString(
+                R.string.character_status,
+                character.status.capitalize()
+            )
+            Glide.with(this.root)
+                .load(character.image)
+                .transform(RoundedCorners(8))
+                .into(characterAvatar)
         }
     }
 
