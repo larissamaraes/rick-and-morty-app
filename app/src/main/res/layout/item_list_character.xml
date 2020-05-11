@@ -36,4 +36,10 @@
         app:layout_constraintTop_toBottomOf="@+id/character_name"
         tools:text="Status: Alive" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayDivider"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
