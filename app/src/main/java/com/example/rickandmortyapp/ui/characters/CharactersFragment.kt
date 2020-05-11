@@ -4,36 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.lifecycle.ViewModelProviders
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmortyapp.R
 import com.example.rickandmortyapp.databinding.FragmentCharactersBinding
 import com.example.rickandmortyapp.model.Character
 
 class CharactersFragment : Fragment() {
 
     private lateinit var binding: FragmentCharactersBinding
-    private val viewModel: CharactersViewModel = CharactersViewModel()
+    private lateinit var viewModel: CharactersViewModel
     private val charactersAdapter: CharactersAdapter by lazy { CharactersAdapter() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentCharactersBinding.inflate(layoutInflater)
+        viewModel = ViewModelProviders.of(this).get(CharactersViewModel::class.java)
         subscribeUi()
         setupRecyclerView()
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getCharacters()
-    }
-
     private fun subscribeUi() {
-        viewModel.characters.observe(viewLifecycleOwner, Observer { onCharacters(it) })
+        viewModel.getCharacters().observe(viewLifecycleOwner, Observer { onCharacters(it) })
     }
 
     private fun setupRecyclerView() {
@@ -43,10 +37,8 @@ class CharactersFragment : Fragment() {
         }
     }
 
-    private fun onCharacters(characters: List<Character>?) {
-        characters?.let {
-            charactersAdapter.setCharacters(it)
-        }
+    private fun onCharacters(characters: PagedList<Character>?) {
+        charactersAdapter.submitList(characters)
     }
 
     companion object {
