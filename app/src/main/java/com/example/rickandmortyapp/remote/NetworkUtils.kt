@@ -5,6 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkUtils {
 
+    const val PAGE_SIZE = 20
+
     private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
     private val retrofit = Retrofit.Builder()
