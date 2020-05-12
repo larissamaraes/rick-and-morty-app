@@ -1,12 +1,15 @@
 package com.example.rickandmortyapp.ui.characters
 
 import android.view.ViewGroup
+import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmortyapp.model.Character
 
 class CharactersAdapter : PagedListAdapter<Character, RecyclerView.ViewHolder>(OBJECT_DIFF) {
+
+    private var hasMorePages: Boolean? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType) {
@@ -16,14 +19,24 @@ class CharactersAdapter : PagedListAdapter<Character, RecyclerView.ViewHolder>(O
         }
     }
 
-    override fun getItemCount(): Int = super.getItemCount() + if (super.getItemCount() > 0) 1 else 0
+    override fun getItemCount(): Int = super.getItemCount() + if (hasMorePages == true) 1 else 0
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == CHARACTER_VIEW_TYPE) (holder as? CharactersViewHolder)?.bindCharacter(getItem(position))
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position != itemCount - 1) CHARACTER_VIEW_TYPE else PROGRESS_VIEW_TYPE
+        return if (hasMorePages != false && position == itemCount - 1) PROGRESS_VIEW_TYPE else CHARACTER_VIEW_TYPE
+    }
+
+    override fun submitList(pagedList: PagedList<Character>?, commitCallback: Runnable?) {
+        hasMorePages = true
+        super.submitList(pagedList, commitCallback)
+    }
+
+    fun onPagingFinished() {
+        hasMorePages = false
+        notifyDataSetChanged()
     }
 
     companion object {

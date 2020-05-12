@@ -1,6 +1,7 @@
 package com.example.rickandmortyapp.ui.characters
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
@@ -12,8 +13,11 @@ import com.example.rickandmortyapp.remote.paging.CharacterDataSourceFactory
 class CharactersViewModel : ViewModel() {
 
     private val sourceFactory: CharacterDataSourceFactory by lazy {
-        CharacterDataSourceFactory(viewModelScope, NetworkUtils.getNetworkService())
+        CharacterDataSourceFactory(viewModelScope, NetworkUtils.getNetworkService()) { handleHasMorePages(it) }
     }
+
+    val finishPaging: LiveData<Boolean> get() = _finishPaging
+    private val _finishPaging: MutableLiveData<Boolean> = MutableLiveData()
 
     private var characters: LiveData<PagedList<Character>>
 
@@ -27,4 +31,8 @@ class CharactersViewModel : ViewModel() {
     }
 
     fun getCharacters() = characters
+
+    private fun handleHasMorePages(hasMorePages: Boolean) {
+        if (!hasMorePages) _finishPaging.value = hasMorePages
+    }
 }

@@ -27,6 +27,7 @@ class CharactersFragment : Fragment() {
     }
 
     private fun subscribeUi() {
+        viewModel.finishPaging.observe(viewLifecycleOwner, Observer { onFinishPaging(it) })
         viewModel.getCharacters().observe(viewLifecycleOwner, Observer { onCharacters(it) })
     }
 
@@ -39,6 +40,12 @@ class CharactersFragment : Fragment() {
 
     private fun onCharacters(characters: PagedList<Character>?) {
         charactersAdapter.submitList(characters)
+    }
+
+    private fun onFinishPaging(shouldFinish: Boolean?) {
+        shouldFinish?.let {
+            charactersAdapter.onPagingFinished()
+        }
     }
 
     companion object {

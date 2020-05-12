@@ -7,7 +7,12 @@ import kotlinx.coroutines.CoroutineScope
 
 class CharacterDataSourceFactory(
     private val coroutineScope: CoroutineScope,
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val hasMorePagesCallback: (Boolean) -> Unit
 ) : DataSource.Factory<Int, Character>() {
-    override fun create(): DataSource<Int, Character> = CharactersDataSource(coroutineScope, apiService)
+    override fun create(): DataSource<Int, Character> = CharactersDataSource(
+        coroutineScope,
+        apiService,
+        hasMorePagesCallback
+    )
 }

@@ -1,5 +1,6 @@
 package com.example.rickandmortyapp.remote.paging
 
+import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.example.rickandmortyapp.model.Character
 import com.example.rickandmortyapp.remote.ApiService
@@ -9,7 +10,8 @@ import kotlinx.coroutines.launch
 
 class CharactersDataSource(
     private val coroutineScope: CoroutineScope,
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val hasMorePagesCallback: (Boolean) -> Unit
 ) : PageKeyedDataSource<Int, Character>() {
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Character>) {
         createCoroutine(0, 1, callback, null)
@@ -39,8 +41,10 @@ class CharactersDataSource(
                 val result = apiService.getCharacters(requestedPage)
                 initialCallback?.onResult(result.characters, null, adjacentPage)
                 callback?.onResult(result.characters, adjacentPage)
+                hasMorePagesCallback.invoke(requestedPage != result.info.pages)
             } catch (e: Exception) {
-                // nothing to do here
+                Log.d("ERROR PAGING: ", requestedPage.toString())
+                print(e)
             }
         }
     }
