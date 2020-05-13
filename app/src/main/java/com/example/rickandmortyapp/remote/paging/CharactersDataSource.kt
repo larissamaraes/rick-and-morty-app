@@ -43,8 +43,7 @@ class CharactersDataSource(
                 callback?.onResult(result.characters, adjacentPage)
                 hasMorePagesCallback.invoke(requestedPage != result.info.pages)
             } catch (e: Exception) {
-                Log.d("ERROR PAGING: ", requestedPage.toString())
-                print(e)
+                Log.d("[CHARACTER] ERROR PAGE:", requestedPage.toString())
             }
         }
     }
