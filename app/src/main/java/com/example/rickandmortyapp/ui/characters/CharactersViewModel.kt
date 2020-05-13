@@ -22,12 +22,7 @@ class CharactersViewModel : ViewModel() {
     private var characters: LiveData<PagedList<Character>>
 
     init {
-        val config = PagedList.Config.Builder()
-            .setPageSize(NetworkUtils.PAGE_SIZE)
-            .setInitialLoadSizeHint(NetworkUtils.PAGE_SIZE * 2)
-            .setEnablePlaceholders(false)
-            .build()
-        characters = LivePagedListBuilder(sourceFactory, config).build()
+        characters = LivePagedListBuilder(sourceFactory, NetworkUtils.getPagedConfig()).build()
     }
 
     fun getCharacters() = characters
