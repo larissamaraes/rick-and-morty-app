@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedList
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmortyapp.databinding.FragmentLocationsBinding
 import com.example.rickandmortyapp.model.Location
 
@@ -16,10 +17,13 @@ class LocationsFragment : Fragment() {
     private lateinit var binding: FragmentLocationsBinding
     private lateinit var viewModel: LocationsViewModel
 
+    private val locationsAdapter: LocationsAdapter by lazy { LocationsAdapter() }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLocationsBinding.inflate(layoutInflater)
         viewModel = ViewModelProviders.of(this).get(LocationsViewModel::class.java)
         subscribeUi()
+        setupRecyclerView()
         return binding.root
     }
 
@@ -27,8 +31,15 @@ class LocationsFragment : Fragment() {
         viewModel.getLocations().observe(viewLifecycleOwner, Observer { onLocations(it) })
     }
 
+    private fun setupRecyclerView() {
+        with(binding.locationsList) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = locationsAdapter
+        }
+    }
+
     private fun onLocations(locations: PagedList<Location>?) {
-        // submit list to adapter
+        locationsAdapter.submitList(locations)
     }
 
     companion object {
