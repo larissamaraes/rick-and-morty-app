@@ -1,4 +1,4 @@
-package com.example.rickandmortyapp.ui.characters
+package com.example.rickandmortyapp.ui.loading
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
