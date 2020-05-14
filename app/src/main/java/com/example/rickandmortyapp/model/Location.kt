@@ -2,7 +2,7 @@ package com.example.rickandmortyapp.model
 
 import java.util.*
 
-class Location(
+data class Location(
     val id: Long,
     val name: String,
     val type: String,
