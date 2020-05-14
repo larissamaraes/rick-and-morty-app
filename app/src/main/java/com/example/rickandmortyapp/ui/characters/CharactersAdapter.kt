@@ -6,6 +6,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmortyapp.model.Character
+import com.example.rickandmortyapp.ui.loading.LoadingViewHolder
 
 class CharactersAdapter : PagedListAdapter<Character, RecyclerView.ViewHolder>(OBJECT_DIFF) {
 

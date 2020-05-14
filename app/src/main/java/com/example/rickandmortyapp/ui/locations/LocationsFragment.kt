@@ -29,6 +29,7 @@ class LocationsFragment : Fragment() {
 
     private fun subscribeUi() {
         viewModel.getLocations().observe(viewLifecycleOwner, Observer { onLocations(it) })
+        viewModel.hasMorePages.observe(viewLifecycleOwner, Observer { onHasMorePages(it) })
     }
 
     private fun setupRecyclerView() {
@@ -40,6 +41,10 @@ class LocationsFragment : Fragment() {
 
     private fun onLocations(locations: PagedList<Location>?) {
         locationsAdapter.submitList(locations)
+    }
+
+    private fun onHasMorePages(hasMorePages: Boolean?) {
+        hasMorePages?.let(locationsAdapter::setHasMorePages)
     }
 
     companion object {
