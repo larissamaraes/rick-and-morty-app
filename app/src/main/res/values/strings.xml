@@ -6,4 +6,5 @@
     <string name="tab_text_episodes">Episodes</string>
 
     <string name="character_status">Status: %s</string>
+    <string name="location_type">Type: %s</string>
 </resources>
