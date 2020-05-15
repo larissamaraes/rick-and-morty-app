@@ -1,6 +1,7 @@
 package com.example.rickandmortyapp.remote
 
 import com.example.rickandmortyapp.model.CharacterResponse
+import com.example.rickandmortyapp.model.EpisodeResponse
 import com.example.rickandmortyapp.model.LocationResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,4 +13,7 @@ interface ApiService {
 
     @GET("location/")
     suspend fun getLocations(@Query("page") page: Int): LocationResponse
+
+    @GET("episode/")
+    suspend fun getEpisodes(@Query("page") page: Int): EpisodeResponse
 }
