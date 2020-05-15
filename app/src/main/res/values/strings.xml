@@ -7,4 +7,5 @@
 
     <string name="character_status">Status: %s</string>
     <string name="location_type">Type: %s</string>
+    <string name="episode_text">%s - %s</string>
 </resources>
