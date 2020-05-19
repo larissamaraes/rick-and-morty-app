@@ -1,7 +1,9 @@
 package com.example.rickandmortyapp.remote.paging
 
+import android.app.Application
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
+import com.example.rickandmortyapp.RickAndMortyApplication
 import com.example.rickandmortyapp.model.Character
 import com.example.rickandmortyapp.remote.ApiService
 import kotlinx.coroutines.CoroutineScope
@@ -37,14 +39,17 @@ class CharactersDataSource(
         callback: LoadCallback<Int, Character>?
     ) {
         coroutineScope.launch {
+            var characters = listOf<Character>()
             try {
                 val result = apiService.getCharacters(requestedPage)
+                characters = result.characters
                 initialCallback?.onResult(result.characters, null, adjacentPage)
                 callback?.onResult(result.characters, adjacentPage)
                 hasMorePagesCallback.invoke(requestedPage != result.info.pages)
             } catch (e: Exception) {
                 Log.d("[CHARACTER] ERROR PAGE:", requestedPage.toString())
             }
+            RickAndMortyApplication.database?.characterDao()?.insertCharacters(characters)
         }
     }
 }

@@ -8,5 +8,5 @@ import com.example.rickandmortyapp.model.Character
 @Dao
 interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCharacters(characters: List<Character>)
+    suspend fun insertCharacters(characters: List<Character>)
 }
