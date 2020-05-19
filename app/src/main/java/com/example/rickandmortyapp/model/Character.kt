@@ -1,8 +1,12 @@
 package com.example.rickandmortyapp.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
-data class Character (
+@Entity(tableName = "character")
+data class Character(
+    @PrimaryKey
     val id: Long,
     val name: String,
     val status: String,
