@@ -9,9 +9,8 @@ import com.example.rickandmortyapp.remote.api.ApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
-class CharacterBoundaryCallback (
+class CharacterBoundaryCallback(
     private val apiService: ApiService
 ) : PagedList.BoundaryCallback<Character>() {
 
