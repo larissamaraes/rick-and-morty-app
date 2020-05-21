@@ -2,7 +2,7 @@ package com.example.rickandmortyapp.remote.paging
 
 import androidx.paging.DataSource
 import com.example.rickandmortyapp.model.Character
-import com.example.rickandmortyapp.remote.ApiService
+import com.example.rickandmortyapp.remote.api.ApiService
 import kotlinx.coroutines.CoroutineScope
 
 class CharacterDataSourceFactory(

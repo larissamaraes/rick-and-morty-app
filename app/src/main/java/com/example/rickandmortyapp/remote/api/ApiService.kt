@@ -1,4 +1,4 @@
-package com.example.rickandmortyapp.remote
+package com.example.rickandmortyapp.remote.api
 
 import com.example.rickandmortyapp.model.CharacterResponse
 import com.example.rickandmortyapp.model.EpisodeResponse

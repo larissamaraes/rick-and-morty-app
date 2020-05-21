@@ -2,7 +2,7 @@ package com.example.rickandmortyapp
 
 import android.app.Application
 import androidx.room.Room
-import com.example.rickandmortyapp.remote.AppDatabase
+import com.example.rickandmortyapp.remote.database.AppDatabase
 import com.facebook.stetho.Stetho
 
 class RickAndMortyApplication : Application() {

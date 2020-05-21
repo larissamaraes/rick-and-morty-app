@@ -1,4 +1,4 @@
-package com.example.rickandmortyapp.remote
+package com.example.rickandmortyapp.remote.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -1,11 +1,10 @@
 package com.example.rickandmortyapp.remote.paging
 
-import android.app.Application
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.example.rickandmortyapp.RickAndMortyApplication
 import com.example.rickandmortyapp.model.Character
-import com.example.rickandmortyapp.remote.ApiService
+import com.example.rickandmortyapp.remote.api.ApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
