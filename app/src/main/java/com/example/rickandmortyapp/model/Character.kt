@@ -13,6 +13,6 @@ data class Character(
     val species: String,
     val type: String,
     val gender: String,
-    val image: String
-//    val created: Date
+    val image: String,
+    val created: Date
 )
