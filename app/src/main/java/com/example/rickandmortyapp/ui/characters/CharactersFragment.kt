@@ -28,7 +28,7 @@ class CharactersFragment : Fragment() {
 
     private fun subscribeUi() {
         viewModel.finishPaging.observe(viewLifecycleOwner, Observer { onFinishPaging(it) })
-        viewModel.getCharacters().observe(viewLifecycleOwner, Observer { onCharacters(it) })
+        viewModel.getCharacters()?.observe(viewLifecycleOwner, Observer { onCharacters(it) })
     }
 
     private fun setupRecyclerView() {

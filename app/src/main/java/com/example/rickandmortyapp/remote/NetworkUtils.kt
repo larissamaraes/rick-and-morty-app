@@ -12,9 +12,9 @@ object NetworkUtils {
     private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
     private val pagedListConfig = PagedList.Config.Builder()
-        .setPageSize(NetworkUtils.PAGE_SIZE)
-        .setInitialLoadSizeHint(NetworkUtils.PAGE_SIZE * 2)
-        .setEnablePlaceholders(false)
+        .setPageSize(PAGE_SIZE)
+        .setInitialLoadSizeHint(PAGE_SIZE * 2)
+        .setEnablePlaceholders(true)
         .build()
 
     private val retrofit = Retrofit.Builder()

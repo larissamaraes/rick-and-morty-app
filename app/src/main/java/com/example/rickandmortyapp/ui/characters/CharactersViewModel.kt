@@ -8,26 +8,16 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.rickandmortyapp.model.Character
 import com.example.rickandmortyapp.remote.NetworkUtils
-import com.example.rickandmortyapp.remote.paging.CharacterDataSourceFactory
+import com.example.rickandmortyapp.repository.CharactersRepository
 
 class CharactersViewModel : ViewModel() {
-
-    private val sourceFactory: CharacterDataSourceFactory by lazy {
-        CharacterDataSourceFactory(viewModelScope, NetworkUtils.getNetworkService()) { handleHasMorePages(it) }
-    }
 
     val finishPaging: LiveData<Boolean> get() = _finishPaging
     private val _finishPaging: MutableLiveData<Boolean> = MutableLiveData()
 
-    private var characters: LiveData<PagedList<Character>>
-
-    init {
-        characters = LivePagedListBuilder(sourceFactory, NetworkUtils.getPagedConfig()).build()
+    private val charactersRepository: CharactersRepository by lazy {
+        CharactersRepository(NetworkUtils.getNetworkService())
     }
 
-    fun getCharacters() = characters
-
-    private fun handleHasMorePages(hasMorePages: Boolean) {
-        if (!hasMorePages) _finishPaging.value = hasMorePages
-    }
+    fun getCharacters() = charactersRepository.getCharacters()
 }
